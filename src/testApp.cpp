@@ -6,12 +6,14 @@
 #include "Entity.h"
 #include "TransformComponent.h"
 
+using namespace ecs;
+
 //--------------------------------------------------------------
 void testApp::setup() {
 
-    // particles = new ParticleSystem(500);
+    world = new World();
 
-    em = new EntityManager();
+    EntityManager * em = world->getEntityManager();
     
     for (int i = 0; i < 100; i++) {
         
@@ -44,6 +46,8 @@ void testApp::draw(){
     
     // particles->draw();
     
+    EntityManager * em = world->getEntityManager();
+
     EntityComponents * translation_components = em->getEntityComponents<TransformComponent>();
     
     typedef EntityComponents::iterator it_type;

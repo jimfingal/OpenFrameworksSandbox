@@ -9,16 +9,21 @@
 
 #pragma once
 
+#include "string"
 
-class BaseComponent {
-    
-public:
-    std::string name;
-    
-    BaseComponent(std::string _name) {
-        name = _name;
-    }
-    
-};
+namespace ecs {
+
+    class BaseComponent {
+        
+        public:
+        
+            std::string name;
+            
+            BaseComponent(std::string _name) {
+                name = _name;
+            }
+        
+    };
+}
 
 

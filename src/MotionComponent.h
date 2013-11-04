@@ -8,12 +8,12 @@
 
 #pragma once
 
-class MotionComponent : public BaseComponent {
+class MotionComponent : public ecs::BaseComponent {
     
 public:
     float vx, vy;
 
-    MotionComponent(float _vx, float _vy) : BaseComponent("MotionComponent") {
+    MotionComponent(float _vx, float _vy) : ecs::BaseComponent("MotionComponent") {
         vx = _vx;
         vy = _vy;
     }

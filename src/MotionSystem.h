@@ -8,3 +8,7 @@
 
 #pragma once
 
+class MotionSystem : public System {
+    
+}
+

@@ -10,15 +10,18 @@
 
 #include "tr1/memory"
 
-class BaseEntity {
-    
-public:
-    int id;
-    
-    BaseEntity(int _id) {
-        id = _id;
-    }
-};
+namespace ecs {
 
-typedef std::tr1::shared_ptr<BaseEntity> Entity;
+    class BaseEntity {
+        
+        public:
+            int id;
+            
+            BaseEntity(int _id) {
+                id = _id;
+            }
+    };
 
+    typedef std::tr1::shared_ptr<BaseEntity> Entity;
+
+}

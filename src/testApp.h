@@ -4,6 +4,7 @@
 
 #include "World.h"
 #include "EntityManager.h"
+#include "tr1/memory"
 
 class testApp : public ofBaseApp{
 
@@ -22,6 +23,6 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-        EntityManager * em;
-
+        ecs::World * world;
+    
 };

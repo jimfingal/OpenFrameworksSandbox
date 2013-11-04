@@ -9,6 +9,19 @@
 
 #pragma once
 
-class System {
+#include "World.h"
+
+namespace ecs {
     
-};
+    class System {
+        
+        private:
+            World * world;
+        
+        public:
+            System(World * _w) {
+                world = _w;
+            }
+    };
+
+}

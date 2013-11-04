@@ -8,12 +8,13 @@
 
 #pragma once
 
-class TransformComponent : public BaseComponent {
+class TransformComponent : public ecs::BaseComponent {
     
 public:
+    
     float x, y;
     
-    TransformComponent(float _x, float _y) : BaseComponent("TransformComponent") {
+    TransformComponent(float _x, float _y) : ecs::BaseComponent("TransformComponent") {
         x = _x;
         y = _y;
     }

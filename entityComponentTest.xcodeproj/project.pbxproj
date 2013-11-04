@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AACA70C4182856A40070B518 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AACA70C3182856A40070B518 /* World.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -60,17 +61,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AACA70B4182843F80070B518 /* ofxEntityComponentSystem */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ofxEntityComponentSystem; path = ../../../addons/ofxEntityComponentSystem; sourceTree = "<group>"; };
 		AACA70B7182849690070B518 /* TransformComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransformComponent.h; sourceTree = "<group>"; };
 		AACA70B818284F140070B518 /* MotionComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotionComponent.h; sourceTree = "<group>"; };
 		AACA70BA18284F870070B518 /* MotionSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotionSystem.h; sourceTree = "<group>"; };
 		AACA70BC18284FC90070B518 /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
 		AACA70BD18284FC90070B518 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		AACA70BE18284FC90070B518 /* EntityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityManager.h; sourceTree = "<group>"; };
-		AACA70BF18284FC90070B518 /* Poolable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Poolable.h; sourceTree = "<group>"; };
 		AACA70C018284FC90070B518 /* System.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = System.h; sourceTree = "<group>"; };
 		AACA70C118284FC90070B518 /* SystemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemManager.h; sourceTree = "<group>"; };
 		AACA70C218284FC90070B518 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
+		AACA70C3182856A40070B518 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -148,10 +148,10 @@
 				AACA70BC18284FC90070B518 /* Component.h */,
 				AACA70BD18284FC90070B518 /* Entity.h */,
 				AACA70BE18284FC90070B518 /* EntityManager.h */,
-				AACA70BF18284FC90070B518 /* Poolable.h */,
 				AACA70C018284FC90070B518 /* System.h */,
 				AACA70C118284FC90070B518 /* SystemManager.h */,
 				AACA70C218284FC90070B518 /* World.h */,
+				AACA70C3182856A40070B518 /* World.cpp */,
 			);
 			name = ECS;
 			sourceTree = "<group>";
@@ -159,7 +159,6 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
-				AACA70B4182843F80070B518 /* ofxEntityComponentSystem */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -335,6 +334,7 @@
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* testApp.cpp in Sources */,
+				AACA70C4182856A40070B518 /* World.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
