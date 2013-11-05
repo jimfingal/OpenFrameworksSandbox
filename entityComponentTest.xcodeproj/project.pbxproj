@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		AACA70C4182856A40070B518 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AACA70C3182856A40070B518 /* World.cpp */; };
+		AACA70F018288E710070B518 /* MotionSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AACA70EC18288E710070B518 /* MotionSystem.cpp */; };
+		AACA70F118288E710070B518 /* RenderSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AACA70EE18288E710070B518 /* RenderSystem.cpp */; };
+		AACA70F318288EFD0070B518 /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AACA70F218288EFD0070B518 /* EntityManager.cpp */; };
+		AACA70F518288FBC0070B518 /* RenderComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AACA70F418288FBC0070B518 /* RenderComponent.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -71,6 +75,12 @@
 		AACA70C118284FC90070B518 /* SystemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemManager.h; sourceTree = "<group>"; };
 		AACA70C218284FC90070B518 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
 		AACA70C3182856A40070B518 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
+		AACA70EC18288E710070B518 /* MotionSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MotionSystem.cpp; sourceTree = "<group>"; };
+		AACA70ED18288E710070B518 /* RenderComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderComponent.h; sourceTree = "<group>"; };
+		AACA70EE18288E710070B518 /* RenderSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderSystem.cpp; sourceTree = "<group>"; };
+		AACA70EF18288E710070B518 /* RenderSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderSystem.h; sourceTree = "<group>"; };
+		AACA70F218288EFD0070B518 /* EntityManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EntityManager.cpp; sourceTree = "<group>"; };
+		AACA70F418288FBC0070B518 /* RenderComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderComponent.cpp; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -128,8 +138,10 @@
 		AACA70B6182849520070B518 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AACA70ED18288E710070B518 /* RenderComponent.h */,
 				AACA70B7182849690070B518 /* TransformComponent.h */,
 				AACA70B818284F140070B518 /* MotionComponent.h */,
+				AACA70F418288FBC0070B518 /* RenderComponent.cpp */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -137,6 +149,9 @@
 		AACA70B918284F730070B518 /* Systems */ = {
 			isa = PBXGroup;
 			children = (
+				AACA70EC18288E710070B518 /* MotionSystem.cpp */,
+				AACA70EE18288E710070B518 /* RenderSystem.cpp */,
+				AACA70EF18288E710070B518 /* RenderSystem.h */,
 				AACA70BA18284F870070B518 /* MotionSystem.h */,
 			);
 			name = Systems;
@@ -147,11 +162,12 @@
 			children = (
 				AACA70BC18284FC90070B518 /* Component.h */,
 				AACA70BD18284FC90070B518 /* Entity.h */,
-				AACA70BE18284FC90070B518 /* EntityManager.h */,
 				AACA70C018284FC90070B518 /* System.h */,
 				AACA70C118284FC90070B518 /* SystemManager.h */,
 				AACA70C218284FC90070B518 /* World.h */,
 				AACA70C3182856A40070B518 /* World.cpp */,
+				AACA70BE18284FC90070B518 /* EntityManager.h */,
+				AACA70F218288EFD0070B518 /* EntityManager.cpp */,
 			);
 			name = ECS;
 			sourceTree = "<group>";
@@ -335,6 +351,10 @@
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* testApp.cpp in Sources */,
 				AACA70C4182856A40070B518 /* World.cpp in Sources */,
+				AACA70F018288E710070B518 /* MotionSystem.cpp in Sources */,
+				AACA70F118288E710070B518 /* RenderSystem.cpp in Sources */,
+				AACA70F318288EFD0070B518 /* EntityManager.cpp in Sources */,
+				AACA70F518288FBC0070B518 /* RenderComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

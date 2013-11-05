@@ -15,8 +15,8 @@ namespace ecs {
     
     class RenderSystem : public System {
         
-    public:
-        RenderSystem(World * world);
-        void draw();
+        public:
+            RenderSystem(World * world);
+            void draw();
     };
 }

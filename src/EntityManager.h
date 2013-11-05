@@ -25,32 +25,21 @@ namespace ecs {
     class EntityManager {
         
     private:
+        int next_available_id = 0;
+
+        World * w;
+
         std::map<const std::type_info *, std::map<int, BaseComponent *> > component_stores;
         std::set<Entity *> entities;
         
-        int next_available_id = 0;
-        World * w;
+        void initializeTypeKeyIfEmpty(const std::type_info * type_key);
+        
         
     public:
         
-        EntityManager(World * _w) {
-            w = _w;
-        }
-        
-        ~EntityManager() {
-            
-            // component_stores.clear();
-            entities.clear();
-            
-        }
-        
-        Entity * createEntity() {
-            
-            Entity * new_entity = new Entity(++next_available_id);
-            entities.insert(new_entity);
-            return new_entity;
-            
-        }
+        EntityManager(World * _w);
+        ~EntityManager();
+        Entity * createEntity();
         
         template<typename N>
         N * getComponent(int entity_id) {
@@ -94,18 +83,6 @@ namespace ecs {
             
             
         }
-        
-        private:
-        
-        void initializeTypeKeyIfEmpty(const std::type_info * type_key) {
-            
-            if (component_stores.count(type_key) == 0) {
-                std::map<int, BaseComponent *> entity_component;
-                component_stores[type_key] = entity_component;
-            }
-        }
-        
-        
     };
 
 }
