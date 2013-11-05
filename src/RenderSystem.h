@@ -10,6 +10,7 @@
 
 #include "System.h"
 #include "World.h"
+#include "Component.h"
 
 namespace ecs {
     

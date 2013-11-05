@@ -8,6 +8,7 @@
 
 #pragma once
 #include "tr1/memory"
+#include "EntityManager.h"
 
 namespace ecs {
 
@@ -27,8 +28,8 @@ namespace ecs {
             ~World();
             
             EntityManager * getEntityManager();
-            
             SystemManager * getSystemManager();
+    
         
     };
     

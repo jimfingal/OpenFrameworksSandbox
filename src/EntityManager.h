@@ -9,7 +9,6 @@
 
 #pragma once
 
-#include "Entity.h"
 #include "Component.h"
 #include "map"
 #include "tr1/memory"
@@ -17,27 +16,29 @@
 
 
 namespace ecs {
-    
-    class World;
-    
-    typedef std::map<int, BaseComponent *>::iterator ComponentIterator;
 
+    class World;
+    class Entity;
+    
+    typedef std::map<Entity *, BaseComponent *>::iterator ComponentIterator;
+    typedef std::pair<Entity *, BaseComponent *> ComponentPair;
+
+    
     class EntityManager {
         
     private:
         int next_available_id = 0;
 
-        World * w;
-
-        std::map<const std::type_info *, std::map<int, BaseComponent *> > component_stores;
-        std::set<Entity *> entities;
+        std::map<const std::type_info *, std::map<Entity *, BaseComponent *> > component_stores;
+        std::map<int, Entity *> entities;
         
         void initializeTypeKeyIfEmpty(const std::type_info * type_key);
         
+        World * world;
         
     public:
         
-        EntityManager(World * _w);
+        EntityManager(World * world);
         ~EntityManager();
         Entity * createEntity();
         
@@ -47,13 +48,15 @@ namespace ecs {
             N * component = NULL;
             
             const std::type_info * type_key = &typeid(N);
+            
+            Entity * entity_key = entities[entity_id];
 
             if (component_stores.count(type_key) > 0) {
                 
-                std::map<int, BaseComponent *> * entity_component = &component_stores[type_key];
+                std::map<Entity *, BaseComponent *> * entity_component = &component_stores[type_key];
                 
-                if ((*entity_component).count(entity_id) > 0) {
-                    component = (N *) (*entity_component)[entity_id];
+                if ((*entity_component).count(entity_key) > 0) {
+                    component = (N *) (*entity_component)[entity_key];
                 }
                 
             }
@@ -64,16 +67,17 @@ namespace ecs {
         N * addComponent(int entity_id, N * component) {
             
             const std::type_info * type_key = &typeid(N);
+            Entity * entity_key = entities[entity_id];
 
             this->initializeTypeKeyIfEmpty(type_key);
             
-            component_stores[type_key][entity_id] = component;
+            component_stores[type_key][entity_key] = component;
             
             return component;
         }
         
         template<class N>
-        std::map<int, BaseComponent *> * getEntityComponents() {
+        std::map<Entity *, BaseComponent *> * getEntityComponents() {
             
             const std::type_info * type_key = &typeid(N);
 
