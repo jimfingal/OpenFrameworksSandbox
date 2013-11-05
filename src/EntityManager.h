@@ -18,15 +18,16 @@
 
 namespace ecs {
     
-    typedef std::map<int, BaseComponent *> EntityComponents;
-
     class World;
     
+    typedef std::map<int, BaseComponent *>::iterator ComponentIterator;
+
     class EntityManager {
         
     private:
-        std::map<const std::type_info *, EntityComponents > component_stores;
-        std::set<Entity> entities;
+        std::map<const std::type_info *, std::map<int, BaseComponent *> > component_stores;
+        std::set<Entity *> entities;
+        
         int next_available_id = 0;
         World * w;
         
@@ -38,29 +39,32 @@ namespace ecs {
         
         ~EntityManager() {
             
-            // Iterate through entities and delete
+            // component_stores.clear();
+            entities.clear();
             
-            // Iterate through component stores and delete
         }
         
-        Entity createEntity() {
+        Entity * createEntity() {
             
-            Entity new_entity = Entity(new BaseEntity(++next_available_id));
+            Entity * new_entity = new Entity(++next_available_id);
             entities.insert(new_entity);
             return new_entity;
+            
         }
         
         template<typename N>
         N * getComponent(int entity_id) {
             
             N * component = NULL;
+            
             const std::type_info * type_key = &typeid(N);
 
             if (component_stores.count(type_key) > 0) {
-                EntityComponents * entity_component = &component_stores[type_key];
+                
+                std::map<int, BaseComponent *> * entity_component = &component_stores[type_key];
                 
                 if ((*entity_component).count(entity_id) > 0) {
-                    component = (*entity_component)[entity_id];
+                    component = (N *) (*entity_component)[entity_id];
                 }
                 
             }
@@ -72,13 +76,7 @@ namespace ecs {
             
             const std::type_info * type_key = &typeid(N);
 
-            if (component_stores.count(type_key) == 0) {
-                
-                EntityComponents entity_component;
-                
-                component_stores[type_key] = entity_component;
-                
-            }
+            this->initializeTypeKeyIfEmpty(type_key);
             
             component_stores[type_key][entity_id] = component;
             
@@ -86,16 +84,25 @@ namespace ecs {
         }
         
         template<class N>
-        EntityComponents * getEntityComponents() {
+        std::map<int, BaseComponent *> * getEntityComponents() {
             
             const std::type_info * type_key = &typeid(N);
 
-            if (component_stores.count(type_key) == 0) {
-                return NULL;
-            } else {
-                return &component_stores[type_key];
-            }
+            this->initializeTypeKeyIfEmpty(type_key);
             
+            return &component_stores[type_key];
+            
+            
+        }
+        
+        private:
+        
+        void initializeTypeKeyIfEmpty(const std::type_info * type_key) {
+            
+            if (component_stores.count(type_key) == 0) {
+                std::map<int, BaseComponent *> entity_component;
+                component_stores[type_key] = entity_component;
+            }
         }
         
         

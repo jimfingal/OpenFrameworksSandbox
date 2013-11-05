@@ -25,6 +25,13 @@ namespace ecs {
     SystemManager * World::getSystemManager() {
         return this->system_manager;
     }
+    
+    World::~World() {
+        
+        delete entity_manager;
+        delete system_manager;
+        
+    }
 
 }
 

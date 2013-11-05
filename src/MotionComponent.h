@@ -14,8 +14,8 @@ public:
     float vx, vy;
 
     MotionComponent(float _vx, float _vy) : ecs::BaseComponent("MotionComponent") {
-        vx = _vx;
-        vy = _vy;
+        this->vx = _vx;
+        this->vy = _vy;
     }
     
     

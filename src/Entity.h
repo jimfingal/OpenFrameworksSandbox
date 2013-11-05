@@ -8,20 +8,21 @@
 
 #pragma once
 
-#include "tr1/memory"
-
 namespace ecs {
 
-    class BaseEntity {
+    class Entity  {
         
         public:
             int id;
             
-            BaseEntity(int _id) {
+            Entity(int _id) {
                 id = _id;
             }
+        
+        friend bool operator<(const Entity& l, const Entity& r )
+        {
+            return l.id < r.id;
+        }
     };
-
-    typedef std::tr1::shared_ptr<BaseEntity> Entity;
 
 }

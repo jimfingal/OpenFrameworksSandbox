@@ -7,8 +7,16 @@
 //
 
 #pragma once
+#include "World.h"
+#include "System.h"
 
-class MotionSystem : public System {
+namespace ecs {
     
+    class MotionSystem : public System {
+        
+        public:
+            MotionSystem(World * world);
+            void update(double dt);
+    };
 }
 

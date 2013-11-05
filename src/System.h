@@ -13,15 +13,16 @@
 
 namespace ecs {
     
-    class System {
+    class System  {
         
-        private:
+        protected:
             World * world;
         
         public:
             System(World * _w) {
                 world = _w;
             }
+        
     };
 
 }

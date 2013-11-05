@@ -13,7 +13,7 @@
 
 namespace ecs {
 
-    class BaseComponent {
+    class BaseComponent   {
         
         public:
         
@@ -22,7 +22,7 @@ namespace ecs {
             BaseComponent(std::string _name) {
                 name = _name;
             }
-        
+                
     };
 }
 

@@ -17,7 +17,7 @@ namespace ecs {
         
     private:
         
-        std::map<const std::type_info *, System * > systems;
+        std::map<const std::type_info *, System *> systems;
         World * w;
         
     public:
@@ -34,7 +34,8 @@ namespace ecs {
             N * system = NULL;
             
             if (systems.count((type_key)) > 0) {
-                system = systems[type_key];
+                
+                system = (N *) systems[type_key];
             }
             
             return system;
@@ -44,12 +45,6 @@ namespace ecs {
         N * addSystem(N * system) {
             
             const std::type_info * type_key = &typeid(N);
-
-            if (systems.count(type_key) > 0) {
-                
-                N * tmp = (N *) systems[type_key];
-                delete tmp;
-            }
             
             systems[type_key] = system;
             

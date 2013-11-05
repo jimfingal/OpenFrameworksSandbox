@@ -1,12 +1,32 @@
 #include "testApp.h"
 #include "ofAppRunner.h"
 #include "World.h"
-#include "ofGraphics.h"
 #include "EntityManager.h"
+#include "SystemManager.h"
+#include "ofGraphics.h"
+
 #include "Entity.h"
 #include "TransformComponent.h"
+#include "MotionComponent.h"
+#include "RenderComponent.h"
+
+#include "RenderSystem.h"
+#include "MotionSystem.h"
 
 using namespace ecs;
+
+int randomPlusOrMinus() {
+    float r = ofRandomf();
+    if (r < 0) {
+        return -1;
+    } else {
+        return 1;
+    }
+}
+
+int randPlusMinus(int x) {
+    return rand() % x * randomPlusOrMinus();
+}
 
 //--------------------------------------------------------------
 void testApp::setup() {
@@ -15,12 +35,17 @@ void testApp::setup() {
 
     EntityManager * em = world->getEntityManager();
     
+    world->getSystemManager()->addSystem(new ecs::MotionSystem(world));
+    world->getSystemManager()->addSystem(new ecs::RenderSystem(world));
+
     for (int i = 0; i < 100; i++) {
         
-        Entity e = em->createEntity();
+        Entity * e = em->createEntity();
         
         em->addComponent(e->id, new TransformComponent(rand() % 1024, rand() % 768));
-        
+        em->addComponent(e->id, new MotionComponent(randPlusMinus(100), randPlusMinus(100)));
+        em->addComponent(e->id, new RenderComponent(new CircleRenderer(rand() % 5, rand() % 255, rand() % 255, rand() % 255)));
+
     }
     
     
@@ -33,45 +58,20 @@ void testApp::update() {
     
     double dt = ofGetLastFrameTime();
     
-    /*
-    Particle * p = particles->getParticle(1024/2,768/2, ofRandomf() * 300, ofRandomf() * 300);
+    MotionSystem * ms = world->getSystemManager()->getSystem<MotionSystem>();
     
-    particles->update(dt);
-    */
+    ms->update(dt);
     
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
     
-    // particles->draw();
-    
-    EntityManager * em = world->getEntityManager();
-
-    EntityComponents * translation_components = em->getEntityComponents<TransformComponent>();
-    
-    typedef EntityComponents::iterator it_type;
-    
-    
-    ofPushStyle();
-    ofSetColor(255, 255, 255);
-    ofFill();
-    
-    for (it_type iterator = translation_components->begin();  iterator != translation_components->end(); iterator++) {
-        
-        int id = iterator->first;
-        TransformComponent * transform = (TransformComponent *) iterator->second;
-        
-        ofCircle(transform->x, transform->y, 3);
-    
-    }
-    
-    ofPopStyle();
-
+    RenderSystem * rs = world->getSystemManager()->getSystem<RenderSystem>();
+    rs->draw();
     
     ofSetColor(255, 255, 255);
     ofDrawBitmapString(ofToString((int) ofGetFrameRate()) + " fps", 32, 52);
-    //ofDrawBitmapString(ofToString(particles->used_particles.size()) + " used particles", 32, 64);
 
 }
 

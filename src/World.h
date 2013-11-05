@@ -14,7 +14,7 @@ namespace ecs {
     class EntityManager;
     class SystemManager;
 
-    class World {
+    class World  {
         
         private:
 
@@ -24,8 +24,9 @@ namespace ecs {
         public:
             
             World();
+            ~World();
             
-            EntityManager *  getEntityManager();
+            EntityManager * getEntityManager();
             
             SystemManager * getSystemManager();
         
